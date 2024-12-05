@@ -1,8 +1,13 @@
 /*
 NOTES:
+
     -UI works
-    -x, y, & z values do NOT pass, thus the results are always the same
-    -Solution labels need to display a default value of 0 / null
+
+    -->Issues
+        -you should not have two/three of the same symbol selected
+    -->SOLVED!!!
+        -x, y, & z values do NOT pass, thus the results are always the same
+        -Solution labels need to display a default value of 0 / null
 */
 package TerminusCodepkg;
 
@@ -51,9 +56,9 @@ public class TerminusWWCodeFrame {
     JLabel solution2;
     JLabel solution3;
 
-    public int xVal = 0;
-    public int yVal = 0;
-    public int zVal = 0;
+    public int xVal;
+    public int yVal;
+    public int zVal;
 
     TerminusWWCodeFrame(){
 
@@ -95,6 +100,7 @@ public class TerminusWWCodeFrame {
                     xButton20.setIcon(symbol20);
                     xButton21.setIcon(symbol21);
                     xButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     xButton0.setIcon(symbol0);
@@ -114,6 +120,7 @@ public class TerminusWWCodeFrame {
                     xButton20.setIcon(symbol20);
                     xButton21.setIcon(symbol21);
                     xButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     xButton10.setIcon(symbol10);
@@ -133,6 +140,7 @@ public class TerminusWWCodeFrame {
                     xButton20.setIcon(symbol20);
                     xButton21.setIcon(symbol21);
                     xButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     xButton11.setIcon(symbol11);
@@ -152,6 +160,7 @@ public class TerminusWWCodeFrame {
                     xButton11.setIcon(symbol11);
                     xButton21.setIcon(symbol21);
                     xButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     xButton20.setIcon(symbol20);
@@ -171,6 +180,7 @@ public class TerminusWWCodeFrame {
                     xButton11.setIcon(symbol11);
                     xButton20.setIcon(symbol20);
                     xButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     xButton21.setIcon(symbol21);
@@ -190,6 +200,7 @@ public class TerminusWWCodeFrame {
                     xButton11.setIcon(symbol11);
                     xButton20.setIcon(symbol20);
                     xButton21.setIcon(symbol21);
+                    updateSolutions();
                 } else
                 {
                     xButton22.setIcon(symbol22);
@@ -214,6 +225,7 @@ public class TerminusWWCodeFrame {
                     yButton20.setIcon(symbol20);
                     yButton21.setIcon(symbol21);
                     yButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     yButton0.setIcon(symbol0);
@@ -233,6 +245,7 @@ public class TerminusWWCodeFrame {
                     yButton20.setIcon(symbol20);
                     yButton21.setIcon(symbol21);
                     yButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     yButton10.setIcon(symbol10);
@@ -252,6 +265,7 @@ public class TerminusWWCodeFrame {
                     yButton20.setIcon(symbol20);
                     yButton21.setIcon(symbol21);
                     yButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     yButton11.setIcon(symbol11);
@@ -271,6 +285,7 @@ public class TerminusWWCodeFrame {
                     yButton11.setIcon(symbol11);
                     yButton21.setIcon(symbol21);
                     yButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     yButton20.setIcon(symbol20);
@@ -290,6 +305,7 @@ public class TerminusWWCodeFrame {
                     yButton11.setIcon(symbol11);
                     yButton20.setIcon(symbol20);
                     yButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     yButton21.setIcon(symbol21);
@@ -309,6 +325,7 @@ public class TerminusWWCodeFrame {
                     yButton11.setIcon(symbol11);
                     yButton20.setIcon(symbol20);
                     yButton21.setIcon(symbol21);
+                    updateSolutions();
                 } else
                 {
                     yButton22.setIcon(symbol22);
@@ -333,6 +350,7 @@ public class TerminusWWCodeFrame {
                     zButton20.setIcon(symbol20);
                     zButton21.setIcon(symbol21);
                     zButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     zButton0.setIcon(symbol0);
@@ -352,6 +370,7 @@ public class TerminusWWCodeFrame {
                     zButton20.setIcon(symbol20);
                     zButton21.setIcon(symbol21);
                     zButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     zButton10.setIcon(symbol10);
@@ -371,6 +390,7 @@ public class TerminusWWCodeFrame {
                     zButton20.setIcon(symbol20);
                     zButton21.setIcon(symbol21);
                     zButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     zButton11.setIcon(symbol11);
@@ -390,6 +410,7 @@ public class TerminusWWCodeFrame {
                     zButton11.setIcon(symbol11);
                     zButton21.setIcon(symbol21);
                     zButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     zButton20.setIcon(symbol20);
@@ -409,6 +430,7 @@ public class TerminusWWCodeFrame {
                     zButton11.setIcon(symbol11);
                     zButton20.setIcon(symbol20);
                     zButton22.setIcon(symbol22);
+                    updateSolutions();
                 } else
                 {
                     zButton21.setIcon(symbol21);
@@ -428,6 +450,7 @@ public class TerminusWWCodeFrame {
                     zButton11.setIcon(symbol11);
                     zButton20.setIcon(symbol20);
                     zButton21.setIcon(symbol21);
+                    updateSolutions();
                 } else
                 {
                     zButton22.setIcon(symbol22);
@@ -439,14 +462,12 @@ public class TerminusWWCodeFrame {
         //Setting up the solution panel and labels
         solution = new JLabel("The Answer is: ");
         solution.setFont(new Font("Calibri", Font.PLAIN, 125));
-        int solution1num = ((2 * yVal) + 11);
-        solution1 = new JLabel(" " + solution1num + " ");
+
+        solution1 = new JLabel(" 0 ");
         solution1.setFont(new Font("Calibri", Font.PLAIN, 125));
-        int solution2num = (((2 * zVal) + yVal) - 5);
-        solution2 = new JLabel(" " + solution2num +  " ");
+        solution2 = new JLabel(" 0 ");
         solution2.setFont(new Font("Calibri", Font.PLAIN, 125));
-        int solution3num = abs(((yVal + zVal) - xVal));
-        solution3 = new JLabel(" " + solution3num + " ");
+        solution3 = new JLabel(" 0 ");
         solution3.setFont(new Font("Calibri", Font.PLAIN, 125));
 
         //Adding the buttons and labels to the layouts
@@ -483,13 +504,27 @@ public class TerminusWWCodeFrame {
         solutionPanel.add(solution2);
         solutionPanel.add(solution3);
 
+        //updateSolutions(); //So default values are co
 
         frame.setVisible(true);
         frame.setSize(1720, 960);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+    private void updateSolutions() {
+        //Recalculate the solutions
+        int solution1num = ((2 * xVal) + 11);
+        int solution2num = (((2 * zVal) + yVal) - 5);
+        int solution3num = abs(((yVal + zVal) - xVal));
+
+        //Update the labels
+        solution1.setText(" " + solution1num + " ");
+        solution2.setText(" " + solution2num + " ");
+        solution3.setText(" " + solution3num + " ");
+    }
+
     public static void main(String[] args){
+        //UI Runner
         TerminusWWCodeFrame terminusWWCodeUI = new TerminusWWCodeFrame();
     }
 
