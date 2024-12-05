@@ -154,9 +154,7 @@ public class TerminusWWCodeFrame {
     }
 
     public static void main(String[] args){
-
         TerminusWWCodeFrame UI = new TerminusWWCodeFrame();
-
     }
 
 }
