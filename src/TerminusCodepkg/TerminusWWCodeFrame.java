@@ -1,7 +1,17 @@
+/*
+NOTES:
+    -UI works
+    -x, y, & z values do NOT pass, thus the results are always the same
+    -Solution labels need to display a default value of 0 / null
+*/
 package TerminusCodepkg;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import static java.lang.Math.abs;
 
 public class TerminusWWCodeFrame {
 
@@ -41,6 +51,10 @@ public class TerminusWWCodeFrame {
     JLabel solution2;
     JLabel solution3;
 
+    public int xVal = 0;
+    public int yVal = 0;
+    public int zVal = 0;
+
     TerminusWWCodeFrame(){
 
         frame = new JFrame("Terminus Code Calculator");
@@ -52,65 +66,387 @@ public class TerminusWWCodeFrame {
         frame.add(solutionPanel);
         frame.setLayout(new GridLayout(4,1));
 
+        ImageIcon symbol0 = new ImageIcon("ValueIs0.png");
+        ImageIcon num0 = new ImageIcon("num0.png");
+        ImageIcon symbol10 = new ImageIcon("ValueIs10.png");
+        ImageIcon num10 = new ImageIcon("num10.png");
+        ImageIcon symbol11 = new ImageIcon("ValueIs11.png");
+        ImageIcon num11 = new ImageIcon("num11.png");
+        ImageIcon symbol20 = new ImageIcon("ValueIs20.png");
+        ImageIcon num20 = new ImageIcon("num20.png");
+        ImageIcon symbol21 = new ImageIcon("ValueIs21.png");
+        ImageIcon num21 = new ImageIcon("num21.png");
+        ImageIcon symbol22 = new ImageIcon("ValueIs22.png");
+        ImageIcon num22 = new ImageIcon("num22.png");
+
         //Setting up X label, panels, and buttons
         xLabel = new JLabel("X");
         xLabel.setFont(new Font("Calibri", Font.PLAIN, 200));
-        ImageIcon x0 = new ImageIcon("ValueIs0.png");
-        xButton0 = new JButton(x0);
-        ImageIcon x10 = new ImageIcon("ValueIs10.png");
-        xButton10 = new JButton(x10);
-        ImageIcon x11 = new ImageIcon("ValueIs11.png");
-        xButton11 = new JButton(x11);
-        ImageIcon x20 = new ImageIcon("ValueIs20.png");
-        xButton20 = new JButton(x20);
-        ImageIcon x21 = new ImageIcon("ValueIs21.png");
-        xButton21 = new JButton(x21);
-        ImageIcon x22 = new ImageIcon("ValueIs22.png");
-        xButton22 = new JButton(x22);
+        xButton0 = new JButton(symbol0);
+        xButton0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(xButton0.getIcon() == symbol0)
+                {
+                    xVal = 0;
+                    xButton0.setIcon(num0);
+                    xButton10.setIcon(symbol10);
+                    xButton11.setIcon(symbol11);
+                    xButton20.setIcon(symbol20);
+                    xButton21.setIcon(symbol21);
+                    xButton22.setIcon(symbol22);
+                } else
+                {
+                    xButton0.setIcon(symbol0);
+                }
+            }
+        });
+        xButton10 = new JButton(symbol10);
+        xButton10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(xButton10.getIcon() == symbol10)
+                {
+                    xVal = 10;
+                    xButton10.setIcon(num10);
+                    xButton0.setIcon(symbol0);
+                    xButton11.setIcon(symbol11);
+                    xButton20.setIcon(symbol20);
+                    xButton21.setIcon(symbol21);
+                    xButton22.setIcon(symbol22);
+                } else
+                {
+                    xButton10.setIcon(symbol10);
+                }
+            }
+        });
+        xButton11 = new JButton(symbol11);
+        xButton11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(xButton11.getIcon() == symbol11)
+                {
+                    xVal = 11;
+                    xButton11.setIcon(num11);
+                    xButton0.setIcon(symbol0);
+                    xButton10.setIcon(symbol10);
+                    xButton20.setIcon(symbol20);
+                    xButton21.setIcon(symbol21);
+                    xButton22.setIcon(symbol22);
+                } else
+                {
+                    xButton11.setIcon(symbol11);
+                }
+            }
+        });
+        xButton20 = new JButton(symbol20);
+        xButton20.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(xButton20.getIcon() == symbol20)
+                {
+                    xVal = 20;
+                    xButton20.setIcon(num20);
+                    xButton0.setIcon(symbol0);
+                    xButton10.setIcon(symbol10);
+                    xButton11.setIcon(symbol11);
+                    xButton21.setIcon(symbol21);
+                    xButton22.setIcon(symbol22);
+                } else
+                {
+                    xButton20.setIcon(symbol20);
+                }
+            }
+        });
+        xButton21 = new JButton(symbol21);
+        xButton21.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(xButton21.getIcon() == symbol21)
+                {
+                    xVal = 21;
+                    xButton21.setIcon(num21);
+                    xButton0.setIcon(symbol0);
+                    xButton10.setIcon(symbol10);
+                    xButton11.setIcon(symbol11);
+                    xButton20.setIcon(symbol20);
+                    xButton22.setIcon(symbol22);
+                } else
+                {
+                    xButton21.setIcon(symbol21);
+                }
+            }
+        });
+        xButton22 = new JButton(symbol22);
+        xButton22.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(xButton22.getIcon() == symbol22)
+                {
+                    xVal = 22;
+                    xButton22.setIcon(num22);
+                    xButton0.setIcon(symbol0);
+                    xButton10.setIcon(symbol10);
+                    xButton11.setIcon(symbol11);
+                    xButton20.setIcon(symbol20);
+                    xButton21.setIcon(symbol21);
+                } else
+                {
+                    xButton22.setIcon(symbol22);
+                }
+            }
+        });
         xPanel.setLayout(new GridLayout(1,7));
 
         //Setting up Y labels, panels, and buttons
         yLabel = new JLabel("Y");
         yLabel.setFont(new Font("Calibri", Font.PLAIN, 200));
-        ImageIcon y0 = new ImageIcon("ValueIs0.png");
-        yButton0 = new JButton(y0);
-        ImageIcon y10 = new ImageIcon("ValueIs10.png");
-        yButton10 = new JButton(y10);
-        ImageIcon y11 = new ImageIcon("ValueIs11.png");
-        yButton11 = new JButton(y11);
-        ImageIcon y20 = new ImageIcon("ValueIs20.png");
-        yButton20 = new JButton(y20);
-        ImageIcon y21 = new ImageIcon("ValueIs21.png");
-        yButton21 = new JButton(y21);
-        ImageIcon y22 = new ImageIcon("ValueIs22.png");
-        yButton22 = new JButton(y22);
+        yButton0 = new JButton(symbol0);
+        yButton0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(yButton0.getIcon() == symbol0)
+                {
+                    yVal = 0;
+                    yButton0.setIcon(num0);
+                    yButton10.setIcon(symbol10);
+                    yButton11.setIcon(symbol11);
+                    yButton20.setIcon(symbol20);
+                    yButton21.setIcon(symbol21);
+                    yButton22.setIcon(symbol22);
+                } else
+                {
+                    yButton0.setIcon(symbol0);
+                }
+            }
+        });
+        yButton10 = new JButton(symbol10);
+        yButton10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(yButton10.getIcon() == symbol10)
+                {
+                    yVal = 10;
+                    yButton10.setIcon(num10);
+                    yButton0.setIcon(symbol0);
+                    yButton11.setIcon(symbol11);
+                    yButton20.setIcon(symbol20);
+                    yButton21.setIcon(symbol21);
+                    yButton22.setIcon(symbol22);
+                } else
+                {
+                    yButton10.setIcon(symbol10);
+                }
+            }
+        });
+        yButton11 = new JButton(symbol11);
+        yButton11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(yButton11.getIcon() == symbol11)
+                {
+                    yVal = 11;
+                    yButton11.setIcon(num11);
+                    yButton0.setIcon(symbol0);
+                    yButton10.setIcon(symbol10);
+                    yButton20.setIcon(symbol20);
+                    yButton21.setIcon(symbol21);
+                    yButton22.setIcon(symbol22);
+                } else
+                {
+                    yButton11.setIcon(symbol11);
+                }
+            }
+        });
+        yButton20 = new JButton(symbol20);
+        yButton20.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(yButton20.getIcon() == symbol20)
+                {
+                    yVal = 20;
+                    yButton20.setIcon(num20);
+                    yButton0.setIcon(symbol0);
+                    yButton10.setIcon(symbol10);
+                    yButton11.setIcon(symbol11);
+                    yButton21.setIcon(symbol21);
+                    yButton22.setIcon(symbol22);
+                } else
+                {
+                    yButton20.setIcon(symbol20);
+                }
+            }
+        });
+        yButton21 = new JButton(symbol21);
+        yButton21.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(yButton21.getIcon() == symbol21)
+                {
+                    yVal = 21;
+                    yButton21.setIcon(num21);
+                    yButton0.setIcon(symbol0);
+                    yButton10.setIcon(symbol10);
+                    yButton11.setIcon(symbol11);
+                    yButton20.setIcon(symbol20);
+                    yButton22.setIcon(symbol22);
+                } else
+                {
+                    yButton21.setIcon(symbol21);
+                }
+            }
+        });
+        yButton22 = new JButton(symbol22);
+        yButton22.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(yButton22.getIcon() == symbol22)
+                {
+                    yVal = 22;
+                    yButton22.setIcon(num22);
+                    yButton0.setIcon(symbol0);
+                    yButton10.setIcon(symbol10);
+                    yButton11.setIcon(symbol11);
+                    yButton20.setIcon(symbol20);
+                    yButton21.setIcon(symbol21);
+                } else
+                {
+                    yButton22.setIcon(symbol22);
+                }
+            }
+        });
         yPanel.setLayout(new GridLayout(1,7));
 
         //Setting up Z labels, panels and buttons
         zLabel = new JLabel("Z");
         zLabel.setFont(new Font("Calibri", Font.PLAIN, 200));
-        ImageIcon z0 = new ImageIcon("ValueIs0.png");
-        zButton0 = new JButton(z0);
-        ImageIcon z10 = new ImageIcon("ValueIs10.png");
-        zButton10 = new JButton(z10);
-        ImageIcon z11 = new ImageIcon("ValueIs11.png");
-        zButton11 = new JButton(z11);
-        ImageIcon z20 = new ImageIcon("ValueIs20.png");
-        zButton20 = new JButton(z20);
-        ImageIcon z21 = new ImageIcon("ValueIs21.png");
-        zButton21 = new JButton(z21);
-        ImageIcon z22 = new ImageIcon("ValueIs22.png");
-        zButton22 = new JButton(z22);
+        zButton0 = new JButton(symbol0);
+        zButton0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(zButton0.getIcon() == symbol0)
+                {
+                    zVal = 0;
+                    zButton0.setIcon(num0);
+                    zButton10.setIcon(symbol10);
+                    zButton11.setIcon(symbol11);
+                    zButton20.setIcon(symbol20);
+                    zButton21.setIcon(symbol21);
+                    zButton22.setIcon(symbol22);
+                } else
+                {
+                    zButton0.setIcon(symbol0);
+                }
+            }
+        });
+        zButton10 = new JButton(symbol10);
+        zButton10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(zButton10.getIcon() == symbol10)
+                {
+                    zVal = 10;
+                    zButton10.setIcon(num10);
+                    zButton0.setIcon(symbol0);
+                    zButton11.setIcon(symbol11);
+                    zButton20.setIcon(symbol20);
+                    zButton21.setIcon(symbol21);
+                    zButton22.setIcon(symbol22);
+                } else
+                {
+                    zButton10.setIcon(symbol10);
+                }
+            }
+        });
+        zButton11 = new JButton(symbol11);
+        zButton11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(zButton11.getIcon() == symbol11)
+                {
+                    zVal = 11;
+                    zButton11.setIcon(num11);
+                    zButton0.setIcon(symbol0);
+                    zButton10.setIcon(symbol10);
+                    zButton20.setIcon(symbol20);
+                    zButton21.setIcon(symbol21);
+                    zButton22.setIcon(symbol22);
+                } else
+                {
+                    zButton11.setIcon(symbol11);
+                }
+            }
+        });
+        zButton20 = new JButton(symbol20);
+        zButton20.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(zButton20.getIcon() == symbol20)
+                {
+                    zVal = 20;
+                    zButton20.setIcon(num20);
+                    zButton0.setIcon(symbol0);
+                    zButton10.setIcon(symbol10);
+                    zButton11.setIcon(symbol11);
+                    zButton21.setIcon(symbol21);
+                    zButton22.setIcon(symbol22);
+                } else
+                {
+                    zButton20.setIcon(symbol20);
+                }
+            }
+        });
+        zButton21 = new JButton(symbol21);
+        zButton21.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(zButton21.getIcon() == symbol21)
+                {
+                    zVal = 21;
+                    zButton21.setIcon(num21);
+                    zButton0.setIcon(symbol0);
+                    zButton10.setIcon(symbol10);
+                    zButton11.setIcon(symbol11);
+                    zButton20.setIcon(symbol20);
+                    zButton22.setIcon(symbol22);
+                } else
+                {
+                    zButton21.setIcon(symbol21);
+                }
+            }
+        });
+        zButton22 = new JButton(symbol22);
+        zButton22.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(zButton22.getIcon() == symbol22)
+                {
+                    zVal = 22;
+                    zButton22.setIcon(num22);
+                    zButton0.setIcon(symbol0);
+                    zButton10.setIcon(symbol10);
+                    zButton11.setIcon(symbol11);
+                    zButton20.setIcon(symbol20);
+                    zButton21.setIcon(symbol21);
+                } else
+                {
+                    zButton22.setIcon(symbol22);
+                }
+            }
+        });
         zPanel.setLayout(new GridLayout(1,7));
 
         //Setting up the solution panel and labels
         solution = new JLabel("The Answer is: ");
         solution.setFont(new Font("Calibri", Font.PLAIN, 125));
-        solution1 = new JLabel("Null");
+        int solution1num = ((2 * yVal) + 11);
+        solution1 = new JLabel(" " + solution1num + " ");
         solution1.setFont(new Font("Calibri", Font.PLAIN, 125));
-        solution2 = new JLabel("Null");
+        int solution2num = (((2 * zVal) + yVal) - 5);
+        solution2 = new JLabel(" " + solution2num +  " ");
         solution2.setFont(new Font("Calibri", Font.PLAIN, 125));
-        solution3 = new JLabel("Null");
+        int solution3num = abs(((yVal + zVal) - xVal));
+        solution3 = new JLabel(" " + solution3num + " ");
         solution3.setFont(new Font("Calibri", Font.PLAIN, 125));
 
         //Adding the buttons and labels to the layouts
@@ -154,7 +490,7 @@ public class TerminusWWCodeFrame {
     }
 
     public static void main(String[] args){
-        TerminusWWCodeFrame UI = new TerminusWWCodeFrame();
+        TerminusWWCodeFrame terminusWWCodeUI = new TerminusWWCodeFrame();
     }
 
 }
